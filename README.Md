@@ -52,7 +52,7 @@ python manage.py runserver
 ngrok http 8000
 ```
 
-This will give you a public URL like `https://xyz.ngrok.io` — use this in your **n8n HTTP nodes**.
+This will give you a public URL like ` https://6d1d-2xxx-7xxx-ff03-4eb9-c5b0-exxx-639b-dba7.ngrok-free.app` — use this in your **n8n HTTP nodes**.
 
 ---
 
