@@ -15,6 +15,8 @@ class HandleDraft(APIView):
         draft_store["draftId"] = request.data.get("draftId", "")
         draft_store["summary"] = request.data.get("summary", "")
         draft_store["mail"] = request.data.get("mail", "")
+        print(draft_store["draftId"])
+
         return Response({"message": "ok"})
 
     def get(self, request):
