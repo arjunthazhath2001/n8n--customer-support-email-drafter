@@ -1,28 +1,23 @@
-from django.shortcuts import render
+# views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# Create your views here.
 
+draft_store = {
+    "message": "",
+    "draftId": "",
+    "summary": "",
+    "mail": ""
+}
 
 class HandleDraft(APIView):
-    def __init__(self):    
-        self.message=""
-        self.draftId=""
-        self.summary=""
-        self.mail=""
-        
-    def post(self,request):
-        self.message=request.data["message"]
-        self.draftId= request.data["draftId"]
-        self.summary= request.data["summary"]
-        self.mail= request.data["mail"]
-        return Response({"message":"ok"})
-    
-    def get(self,request):
-        if self.message!="" and self.draftId!="" and self.summary!="":
-            return Response({
-                "message": self.message,
-                "draftId": self.draftId,
-                "summary": self.summary
-            })
-        return Response({"message":"wait"})
+    def post(self, request):
+        draft_store["message"] = request.data.get("message", "")
+        draft_store["draftId"] = request.data.get("draftId", "")
+        draft_store["summary"] = request.data.get("summary", "")
+        draft_store["mail"] = request.data.get("mail", "")
+        return Response({"message": "ok"})
+
+    def get(self, request):
+        if all(draft_store.values()):
+            return Response(draft_store)
+        return Response({"message": "wait"})
